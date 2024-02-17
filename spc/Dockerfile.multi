@@ -2,4 +2,17 @@ FROM maven:3-amazoncorretto-17 As builder
 COPY . /spring-petclinic
 RUN cd /spring-petclinic && mvn package
 
+FROM amazoncorretto:11-alpine3.17
+LABEL game="cricket"
+LABEL country="india"
+ARG DOWNLOAD_LOCATION="https://github.com/spring-projects/spring-petclinic.git"
+ARG HOMEDIR=/petclinic
+ARG USERNAME=petclinic
+ENV TEST=hello
+RUN adduser -h ${HOMEDIR} -s /bin/sh -D ${USERNAME}
+USER ${USERNAME}
+COPY --from=builder --chown=${USERNAME}:${USERNAME}  ${DOWNLOAD_LOCATION} ${HOMEDIR}/spring-petclinic-3.2.0-SNAPSHOT.jar
+WORKDIR ${HOMEDIR}
+EXPOSE 8080
+CMD ["java", "-jar", "spring-petclinic-3.2.0-SNAPSHOT.jar"]
 
