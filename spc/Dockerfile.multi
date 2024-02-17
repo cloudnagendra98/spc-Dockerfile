@@ -11,7 +11,7 @@ ARG USERNAME=petclinic
 ENV TEST=hello
 RUN adduser -h ${HOMEDIR} -s /bin/sh -D ${USERNAME}
 USER ${USERNAME}
-COPY --from=builder --chown=${USERNAME}:${USERNAME}  ${DOWNLOAD_LOCATION} ${HOMEDIR}/spring-petclinic-3.2.0-SNAPSHOT.jar
+COPY --from=builder --chown=${USERNAME}:${USERNAME}  /spring-petclinic/target/spring-petclinic-3.2.0-SNAPSHOT.jar ${HOMEDIR}/spring-petclinic-3.2.0-SNAPSHOT.jar
 WORKDIR ${HOMEDIR}
 EXPOSE 8080
 CMD ["java", "-jar", "spring-petclinic-3.2.0-SNAPSHOT.jar"]
