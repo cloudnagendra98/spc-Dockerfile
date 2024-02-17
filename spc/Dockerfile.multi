@@ -5,7 +5,6 @@ RUN cd /spring-petclinic && mvn package
 FROM amazoncorretto:11-alpine3.17
 LABEL game="cricket"
 LABEL country="india"
-ARG DOWNLOAD_LOCATION="https://github.com/spring-projects/spring-petclinic.git"
 ARG HOMEDIR=/petclinic
 ARG USERNAME=petclinic
 ENV TEST=hello
