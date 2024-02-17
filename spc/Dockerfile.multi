@@ -1,7 +1,5 @@
 FROM maven:3-amazoncorretto-17 As builder
-#LABEL hunt="fish"
 COPY . /spring-petclinic
-#WORKDIR spring-petclinic 
 RUN cd /spring-petclinic && mvn package
 
 
