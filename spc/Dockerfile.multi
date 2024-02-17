@@ -1,6 +1,5 @@
 FROM maven:3-amazoncorretto-17 As builder
-WORKDIR /spring-petclinic
 COPY . /spring-petclinic
-RUN mvn package
+RUN cd /spring-petclinic && mvn package
 
 
